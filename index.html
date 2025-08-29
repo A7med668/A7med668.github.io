@@ -3,11 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmed Hussein - Data Science Portfolio</title>
+    <title>Ahmed Hussein - Professional Data Science Portfolio</title>
+    
+    <!-- External Libraries -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary-bg: #0a0a0f;
+            --secondary-bg: #1a1a2e;
+            --accent-bg: #16213e;
+            --card-bg: rgba(26, 26, 46, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary-blue: #3b82f6;
+            --secondary-blue: #60a5fa;
+            --accent-cyan: #06b6d4;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,243 +34,419 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, var(--accent-bg) 100%);
+            color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .floating-skill {
-            position: absolute;
-            background: rgba(14, 165, 233, 0.1);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            padding: 8px 16px;
+        /* Glassmorphism Effects */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
             border-radius: 20px;
-            animation: float 6s ease-in-out infinite;
-            font-size: 14px;
-            color: #0ea5e9;
-            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        .glass-card:hover {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Animations */
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
-        .skill-1 { top: 10%; left: 10%; animation-delay: -0.5s; }
-        .skill-2 { top: 20%; right: 15%; animation-delay: -2s; }
-        .skill-3 { bottom: 30%; left: 8%; animation-delay: -3.5s; }
-        .skill-4 { bottom: 20%; right: 10%; animation-delay: -1s; }
-        .skill-5 { top: 40%; left: 5%; animation-delay: -4s; }
-        .skill-6 { top: 60%; right: 8%; animation-delay: -2.5s; }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+        }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-glow { animation: glow 2s ease-in-out infinite alternate; }
+        .animate-fade-in { animation: fadeInUp 0.8s ease-out forwards; }
+
+        /* Typography */
         .gradient-text {
-            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-
-        .project-card {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(30, 58, 138, 0.3);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(14, 165, 233, 0.6);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.1);
-        }
-
-        .btn-github {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            border: none;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .btn-github:hover {
-            background: linear-gradient(135deg, #1d4ed8, #2563eb);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
-            color: white;
-            text-decoration: none;
-        }
-
-        .download-cv-btn {
-            background: linear-gradient(135deg, #f97316, #dc2626);
-            border: none;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .download-cv-btn:hover {
-            background: linear-gradient(135deg, #ea580c, #b91c1c);
-            color: white;
-            text-decoration: none;
+            font-weight: 800;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             position: relative;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -16px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 100px;
             height: 4px;
-            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
             border-radius: 2px;
         }
 
-        .skill-tag {
-            background: rgba(14, 165, 233, 0.1);
-            color: #0ea5e9;
-            padding: 6px 12px;
-            border-radius: 15px;
+        /* Custom Components */
+        .skill-pill {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--secondary-blue);
+            padding: 8px 16px;
+            border-radius: 50px;
             font-size: 14px;
-            border: 1px solid rgba(14, 165, 233, 0.3);
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .experience-card {
-            background: rgba(15, 23, 42, 0.6);
-            border-left: 4px solid #0ea5e9;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0 8px 8px 0;
+        .skill-pill:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: scale(1.05);
         }
 
-        .navbar {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(30, 58, 138, 0.3);
-        }
-
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            border: none;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 10px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--secondary-blue);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .floating-1 { top: 10%; left: 5%; animation: float 4s ease-in-out infinite; }
+        .floating-2 { top: 20%; right: 10%; animation: float 5s ease-in-out infinite 1s; }
+        .floating-3 { bottom: 30%; left: 8%; animation: float 6s ease-in-out infinite 2s; }
+        .floating-4 { bottom: 20%; right: 15%; animation: float 4.5s ease-in-out infinite 0.5s; }
+
+        /* Project Cards */
+        .project-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            border: 3px solid var(--primary-bg);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 12px;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: linear-gradient(to bottom, var(--primary-blue), transparent);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .floating-element { display: none; }
+            .section-title { font-size: 2rem; }
+            .project-card { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar fixed w-full z-50 px-6 py-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="text-xl font-bold gradient-text">Data Science Portfolio</div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="hover:text-blue-400 transition-colors">Home</a>
-                <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
-                <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
-                <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
-                <a href="#experience" class="hover:text-blue-400 transition-colors">Experience</a>
-                <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
-            </div>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
-    <section id="home" class="hero-section relative">
-        <div class="floating-skill skill-1">Machine Learning</div>
-        <div class="floating-skill skill-2">Python</div>
-        <div class="floating-skill skill-3">Deep Learning</div>
-        <div class="floating-skill skill-4">Data Analysis</div>
-        <div class="floating-skill skill-5">AI</div>
-        <div class="floating-skill skill-6">Computer Vision</div>
-        
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-6xl md:text-7xl font-bold gradient-text mb-6">Ahmed Hussein</h1>
-            <h2 class="text-2xl md:text-3xl text-gray-300 mb-8">Data Science Student & AI Enthusiast</h2>
-            <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12">
-                Transforming data into intelligent solutions through Machine Learning, Deep Learning, and AI. 
-                Building innovative systems that solve real-world problems.
-            </p>
-            
-            <!-- Download CV Call-to-Action -->
-            <div class="text-center py-6 md:py-8">
-                <div class="inline-block">
-                    <a href="resume/Ahmed Hussein Ali Abdelsalam Hussein_CV.pdf" download="" 
-                       class="download-cv-btn inline-flex items-center justify-center px-4 md:px-6 py-3 text-sm md:text-base font-semibold text-white bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-3 focus:ring-orange-500 focus:ring-opacity-50 active:scale-95">
-                        <i class="fas fa-download mr-2"></i>
-                        Download My CV
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden py-20">
+        <!-- Floating Elements -->
+        <div class="floating-element floating-1">Machine Learning</div>
+        <div class="floating-element floating-2">Python Expert</div>
+        <div class="floating-element floating-3">Deep Learning</div>
+        <div class="floating-element floating-4">Data Scientist</div>
+
+        <div class="container mx-auto px-6 text-center relative z-20">
+            <div class="animate-fade-in">
+                <h1 class="text-7xl md:text-8xl font-black gradient-text mb-6 animate-glow">
+                    Ahmed Hussein
+                </h1>
+                <div class="text-2xl md:text-4xl text-gray-300 mb-8 font-light">
+                    Data Science Student & AI Enthusiast
+                </div>
+                <p class="text-xl text-gray-400 max-w-4xl mx-auto mb-12 leading-relaxed">
+                    Transforming complex data into intelligent solutions through advanced Machine Learning, 
+                    Deep Learning, and AI technologies. Building innovative systems that solve real-world problems 
+                    and create meaningful impact.
+                </p>
+                
+                <div class="flex flex-col md:flex-row gap-6 justify-center items-center mb-16">
+                    <a href="resume/Ahmed Hussein Ali Abdelsalam Hussein_CV.pdf" download class="btn-primary">
+                        <i class="fas fa-download"></i>
+                        Download CV
+                    </a>
+                    <a href="https://github.com/A7med668" target="_blank" class="btn-secondary">
+                        <i class="fab fa-github"></i>
+                        View GitHub
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title gradient-text">About Me</h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4 text-blue-400"><i class="fas fa-user"></i> Who I Am</h3>
-                    <p class="text-gray-300 mb-6">
-                        I'm Ahmed Hussein Ali Abdelsalam Hussein, a passionate Data Science student and AI enthusiast currently pursuing my Bachelor's degree in Artificial Intelligence and Data Science at Faculty of Artificial Intelligence, Menofia University, Egypt. My academic journey has equipped me with both theoretical foundations and practical expertise in cutting-edge AI technologies.
-                    </p>
-                    
-                    <h3 class="text-2xl font-bold mb-4 text-blue-400"><i class="fas fa-heart"></i> What Drives Me</h3>
-                    <p class="text-gray-300 mb-6">
-                        I'm passionate about bridging the gap between complex AI theory and practical, real-world applications. Every project I undertake is driven by the question: 'How can this technology make a meaningful difference?' Whether it's developing systems for healthcare insights, creating interactive games, or building predictive models, I focus on solutions that create tangible value.
-                    </p>
-
-                    <h3 class="text-2xl font-bold mb-4 text-blue-400"><i class="fas fa-cogs"></i> My Approach</h3>
-                    <p class="text-gray-300">
-                        I believe in the power of data-driven decision making and evidence-based solutions. My approach combines rigorous technical implementation with creative problem-solving, ensuring that every AI system I build is not only technically sound but also user-focused and practical.
-                    </p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-4 text-blue-400">Quick Facts</h3>
-                    <div class="space-y-3">
-                        <div><i class="fas fa-graduation-cap text-blue-400"></i> <strong>Education:</strong> Faculty of AI, Menofia University</div>
-                        <div><i class="fas fa-chart-line text-blue-400"></i> <strong>GPA:</strong> 3.61</div>
-                        <div><i class="fas fa-calendar text-blue-400"></i> <strong>Year:</strong> Third-Year Student (2022-2026)</div>
-                        <div><i class="fas fa-map-marker-alt text-blue-400"></i> <strong>Location:</strong> Menofia, Egypt</div>
-                        <div><i class="fas fa-envelope text-blue-400"></i> <strong>Email:</strong> ahmedhussein12215@gmail.com</div>
-                        <div><i class="fab fa-github text-blue-400"></i> <strong>GitHub:</strong> A7med668</div>
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                    <div class="glass-card p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-400 mb-2">3.61</div>
+                        <div class="text-sm text-gray-400">GPA</div>
+                    </div>
+                    <div class="glass-card p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-400 mb-2">6+</div>
+                        <div class="text-sm text-gray-400">Projects</div>
+                    </div>
+                    <div class="glass-card p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-400 mb-2">5+</div>
+                        <div class="text-sm text-gray-400">Internships</div>
+                    </div>
+                    <div class="glass-card p-6 text-center">
+                        <div class="text-3xl font-bold text-blue-400 mb-2">6+</div>
+                        <div class="text-sm text-gray-400">Certifications</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section class="py-20 bg-gray-900">
+    <!-- About Section -->
+    <section class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="section-title gradient-text">Education</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="experience-card">
-                    <div class="flex flex-col md:flex-row justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-400">Faculty of Artificial Intelligence</h3>
-                            <p class="text-lg text-gray-300">Menofia University, Egypt</p>
-                            <p class="text-gray-400">Major: Data Science</p>
+            <h2 class="section-title gradient-text">About Me</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-user-graduate text-4xl text-blue-400 mr-4"></i>
+                        <h3 class="text-2xl font-bold">Who I Am</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        I'm Ahmed Hussein Ali Abdelsalam Hussein, a passionate Data Science student and AI enthusiast 
+                        currently pursuing my Bachelor's degree in Artificial Intelligence and Data Science at 
+                        Faculty of Artificial Intelligence, Menofia University, Egypt. My academic journey has equipped 
+                        me with both theoretical foundations and practical expertise in cutting-edge AI technologies.
+                    </p>
+                    
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-heart text-4xl text-red-400 mr-4"></i>
+                        <h3 class="text-2xl font-bold">What Drives Me</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">
+                        I'm passionate about bridging the gap between complex AI theory and practical, real-world applications. 
+                        Every project I undertake is driven by the question: 'How can this technology make a meaningful difference?' 
+                        Whether it's developing systems for healthcare insights, creating interactive games, or building 
+                        predictive models, I focus on solutions that create tangible value.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="glass-card p-6">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">
+                            <i class="fas fa-graduation-cap mr-2"></i>Education
+                        </h3>
+                        <div class="space-y-3">
+                            <div><strong>University:</strong> Faculty of AI, Menofia University</div>
+                            <div><strong>Major:</strong> Data Science</div>
+                            <div><strong>GPA:</strong> 3.61</div>
+                            <div><strong>Year:</strong> Third-Year Student (2022-2026)</div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-blue-400 font-semibold">2022 - 2026</p>
-                            <p class="text-gray-400">Third-Year Student</p>
-                            <p class="text-green-400 font-bold">GPA: 3.61</p>
+                    </div>
+
+                    <div class="glass-card p-6">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">
+                            <i class="fas fa-map-marker-alt mr-2"></i>Contact Information
+                        </h3>
+                        <div class="space-y-3">
+                            <div><i class="fas fa-envelope text-blue-400 w-5"></i> ahmedhussein12215@gmail.com</div>
+                            <div><i class="fas fa-phone text-blue-400 w-5"></i> 01099846934</div>
+                            <div><i class="fab fa-github text-blue-400 w-5"></i> A7med668</div>
+                            <div><i class="fas fa-map-marker-alt text-blue-400 w-5"></i> Menofia, Egypt</div>
                         </div>
+                    </div>
+
+                    <div class="glass-card p-6">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">
+                            <i class="fas fa-cogs mr-2"></i>My Approach
+                        </h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            I believe in the power of data-driven decision making and evidence-based solutions. 
+                            My approach combines rigorous technical implementation with creative problem-solving, 
+                            ensuring that every AI system I build is not only technically sound but also user-focused and practical.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title gradient-text">Technical Expertise</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                <div class="glass-card p-8 text-center">
+                    <i class="fas fa-code text-5xl text-blue-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-6">Programming</h3>
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">C++</span>
+                        <span class="skill-pill">SQL</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 text-center">
+                    <i class="fas fa-robot text-5xl text-green-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-6">Machine Learning</h3>
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <span class="skill-pill">Scikit-learn</span>
+                        <span class="skill-pill">TensorFlow</span>
+                        <span class="skill-pill">Deep Learning</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 text-center">
+                    <i class="fas fa-chart-bar text-5xl text-purple-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-6">Data Analysis</h3>
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <span class="skill-pill">NumPy</span>
+                        <span class="skill-pill">Pandas</span>
+                        <span class="skill-pill">Matplotlib</span>
+                        <span class="skill-pill">Seaborn</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 text-center">
+                    <i class="fas fa-tools text-5xl text-orange-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-6">Tools & Platforms</h3>
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <span class="skill-pill">GitHub</span>
+                        <span class="skill-pill">Linux</span>
+                        <span class="skill-pill">Excel</span>
+                        <span class="skill-pill">Power BI</span>
+                        <span class="skill-pill">Streamlit</span>
                     </div>
                 </div>
             </div>
@@ -260,313 +454,336 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20">
+    <section class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="section-title gradient-text">My Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <h2 class="section-title gradient-text">Featured Projects</h2>
+            
+            <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 
                 <!-- Connect4 Game AI -->
-                <div class="project-card rounded-lg p-6">
-                    <div class="mb-4">
-                        <i class="fas fa-gamepad text-4xl text-blue-400 mb-3"></i>
-                        <h3 class="text-xl font-bold mb-2">Connect4 Game AI</h3>
-                        <p class="text-gray-400 mb-4">AI-based Connect4 game with optimal gameplay using Minimax algorithm. Demonstrates advanced understanding of game theory and algorithm implementation.</p>
+                <div class="project-card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-gamepad text-4xl text-blue-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-bold">Connect4 Game AI</h3>
+                            <p class="text-gray-400 text-sm">Game Theory & AI</p>
+                        </div>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Minimax Algorithm</span>
-                        <span class="skill-tag">Game Theory</span>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        AI-based Connect4 game with optimal gameplay using Minimax algorithm. 
+                        Demonstrates advanced understanding of game theory and algorithm implementation.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">Minimax</span>
+                        <span class="skill-pill">Game Theory</span>
                     </div>
-                    <a href="https://github.com/A7med668/Ai_Project" target="_blank" class="btn-github w-full justify-center">
-                        <i class="fab fa-github"></i> View Code
+                    <a href="https://github.com/A7med668/Ai_Project" target="_blank" class="btn-primary w-full justify-center">
+                        <i class="fab fa-github"></i> View Project
                     </a>
                 </div>
 
                 <!-- Diabetes Analysis -->
-                <div class="project-card rounded-lg p-6">
-                    <div class="mb-4">
-                        <i class="fas fa-heartbeat text-4xl text-blue-400 mb-3"></i>
-                        <h3 class="text-xl font-bold mb-2">Diabetes Analysis Project</h3>
-                        <p class="text-gray-400 mb-4">Data visualization and correlation analysis for healthcare insights. Comprehensive report identifying key factors influencing diabetes.</p>
+                <div class="project-card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-heartbeat text-4xl text-red-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-bold">Diabetes Analysis</h3>
+                            <p class="text-gray-400 text-sm">Healthcare Analytics</p>
+                        </div>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">Matplotlib</span>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Comprehensive data visualization and correlation analysis for healthcare insights. 
+                        Identifying key factors influencing diabetes for better healthcare decision-making.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">NumPy</span>
+                        <span class="skill-pill">Pandas</span>
+                        <span class="skill-pill">Matplotlib</span>
                     </div>
-                    <a href="https://github.com/A7med668/Diabetes-Analysis-Project" target="_blank" class="btn-github w-full justify-center">
-                        <i class="fab fa-github"></i> View Code
+                    <a href="https://github.com/A7med668/Diabetes-Analysis-Project" target="_blank" class="btn-primary w-full justify-center">
+                        <i class="fab fa-github"></i> View Project
                     </a>
                 </div>
 
                 <!-- Kidney Disease Analysis -->
-                <div class="project-card rounded-lg p-6">
-                    <div class="mb-4">
-                        <i class="fas fa-microscope text-4xl text-blue-400 mb-3"></i>
-                        <h3 class="text-xl font-bold mb-2">Kidney Disease Analysis</h3>
-                        <p class="text-gray-400 mb-4">Medical data analysis, visualization and classification. Identifying key factors affecting kidney disease for healthcare decision-making.</p>
+                <div class="project-card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-microscope text-4xl text-green-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-bold">Kidney Disease Analysis</h3>
+                            <p class="text-gray-400 text-sm">Medical Classification</p>
+                        </div>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">Seaborn</span>
-                        <span class="skill-tag">Classification</span>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Medical data analysis, visualization and classification system. 
+                        Identifying key factors affecting kidney disease for healthcare decision-making.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">Scikit-learn</span>
+                        <span class="skill-pill">Seaborn</span>
+                        <span class="skill-pill">Classification</span>
                     </div>
-                    <a href="https://github.com/A7med668/Data_Visualization_and_classification_Project" target="_blank" class="btn-github w-full justify-center">
-                        <i class="fab fa-github"></i> View Code
+                    <a href="https://github.com/A7med668/Data_Visualization_and_classification_Project" target="_blank" class="btn-primary w-full justify-center">
+                        <i class="fab fa-github"></i> View Project
                     </a>
                 </div>
 
                 <!-- Sentiment Analysis -->
-                <div class="project-card rounded-lg p-6">
-                    <div class="mb-4">
-                        <i class="fas fa-brain text-4xl text-blue-400 mb-3"></i>
-                        <h3 class="text-xl font-bold mb-2">Sentiment Analysis (Deep Learning)</h3>
-                        <p class="text-gray-400 mb-4">Customer review classification with interactive web app deployment. High accuracy sentiment analysis tool with visualizations.</p>
+                <div class="project-card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-brain text-4xl text-purple-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-bold">Sentiment Analysis</h3>
+                            <p class="text-gray-400 text-sm">Deep Learning NLP</p>
+                        </div>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">Streamlit</span>
-                        <span class="skill-tag">TextBlob</span>
-                        <span class="skill-tag">Deep Learning</span>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Customer review classification with interactive web app deployment. 
+                        High accuracy sentiment analysis tool with real-time visualizations.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-pill">TensorFlow</span>
+                        <span class="skill-pill">Streamlit</span>
+                        <span class="skill-pill">TextBlob</span>
+                        <span class="skill-pill">Deep Learning</span>
                     </div>
-                    <a href="https://github.com/A7med668/DL_Project" target="_blank" class="btn-github w-full justify-center">
-                        <i class="fab fa-github"></i> View Code
+                    <a href="https://github.com/A7med668/DL_Project" target="_blank" class="btn-primary w-full justify-center">
+                        <i class="fab fa-github"></i> View Project
                     </a>
                 </div>
 
                 <!-- Time Series Forecasting -->
-                <div class="project-card rounded-lg p-6">
-                    <div class="mb-4">
-                        <i class="fas fa-chart-line text-4xl text-blue-400 mb-3"></i>
-                        <h3 class="text-xl font-bold mb-2">Time Series Forecasting</h3>
-                        <p class="text-gray-400 mb-4">Household power consumption prediction with statistical analysis and interactive visualizations using advanced forecasting techniques.</p>
+                <div class="project-card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-line text-4xl text-cyan-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-bold">Time Series Forecasting</h3>
+                            <p class="text-gray-400 text-sm">Predictive Analytics</p>
+                        </div>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-tag">Statsmodels</span>
-                        <span class="skill-tag">Plotly</span>
-                        <span class="skill-tag">Time Series</span>
-                        <span class="skill-tag">Forecasting</span>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Household power consumption prediction with statistical analysis and interactive 
+                        visualizations using advanced forecasting techniques.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-pill">Statsmodels</span>
+                        <span class="skill-pill">Plotly</span>
+                        <span class="skill-pill">Time Series</span>
+                        <span class="skill-pill">Forecasting</span>
                     </div>
-                    <a href="https://github.com/A7med668/Forecasting-Time-Series-Data-For-Household-Consumption" target="_blank" class="btn-github w-full justify-center">
-                        <i class="fab fa-github"></i> View Code
+                    <a href="https://github.com/A7med668/Forecasting-Time-Series-Data-For-Household-Consumption" target="_blank" class="btn-primary w-full justify-center">
+                        <i class="fab fa-github"></i> View Project
                     </a>
                 </div>
 
-                <!-- AdventureWorks Power BI Dashboard -->
-                <div class="project-card rounded-lg p-6">
-                    <div class="mb-4">
-                        <i class="fas fa-chart-line text-4xl text-green-400 mb-3"></i>
-                        <h3 class="text-xl font-bold mb-2">AdventureWorks Sales Dashboard</h3>
-                        <p class="text-gray-400 mb-4">
-                            End-to-end Power BI dashboard analyzing sales by categories, products, regions, and salespersons. 
-                            Includes ETL, star-schema modeling, advanced DAX, and interactive reports delivering actionable insights.
-                        </p>
+                <!-- Power BI Dashboard -->
+                <div class="project-card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-dashboard text-4xl text-yellow-400 mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-bold">AdventureWorks Dashboard</h3>
+                            <p class="text-gray-400 text-sm">Business Intelligence</p>
+                        </div>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">ETL</span>
-                        <span class="skill-tag">DAX</span>
-                        <span class="skill-tag">Data Modeling</span>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        End-to-end Power BI dashboard analyzing sales by categories, products, regions, and salespersons. 
+                        Includes ETL, star-schema modeling, and advanced DAX.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="skill-pill">Power BI</span>
+                        <span class="skill-pill">ETL</span>
+                        <span class="skill-pill">DAX</span>
+                        <span class="skill-pill">Data Modeling</span>
                     </div>
-                    <a href="https://drive.google.com/file/d/1bqoTUNS034Udd7YYGE_iX2ZU1IvMLF2n/view?usp=drive_link" target="_blank" class="btn-github w-full justify-center">
+                    <a href="https://drive.google.com/file/d/1bqoTUNS034Udd7YYGE_iX2ZU1IvMLF2n/view?usp=drive_link" target="_blank" class="btn-primary w-full justify-center">
                         <i class="fas fa-external-link-alt"></i> View Dashboard
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <h2 class="section-title gradient-text">Technical Skills</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <i class="fas fa-code text-4xl text-blue-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4">Programming</h3>
-                    <div class="flex flex-wrap gap-2 justify-center">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">SQL</span>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-robot text-4xl text-blue-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4">Machine Learning</h3>
-                    <div class="flex flex-wrap gap-2 justify-center">
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">Deep Learning</span>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-chart-bar text-4xl text-blue-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4">Data Analysis</h3>
-                    <div class="flex flex-wrap gap-2 justify-center">
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">Matplotlib</span>
-                        <span class="skill-tag">Seaborn</span>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <i class="fas fa-tools text-4xl text-blue-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4">Tools & Platforms</h3>
-                    <div class="flex flex-wrap gap-2 justify-center">
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Excel</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Streamlit</span>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-            <!-- Internships -->
-            <section id="experience" class="py-20">
-                <div class="container mx-auto px-6">
-                    <h2 class="section-title gradient-text">Experience & Training</h2>
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title gradient-text">Professional Experience</h2>
+            
+            <div class="max-w-5xl mx-auto">
+                <!-- Internships -->
+                <div class="glass-card p-8 mb-12">
+                    <h3 class="text-3xl font-bold mb-8 text-blue-400">
+                        <i class="fas fa-briefcase mr-3"></i>Internships
+                    </h3>
                     
-                    <!-- Internships -->
-                    <div class="max-w-4xl mx-auto mb-12">
-                        <h3 class="text-2xl font-bold mb-6 text-blue-400"><i class="fas fa-briefcase"></i> Internships</h3>
-                        <div class="space-y-6">
-                            
-                            <div class="experience-card flex flex-col md:flex-row justify-between items-start">
-                                <div>
-                                    <h4 class="text-lg font-bold text-blue-400">Data Science Internship</h4>
-                                    <p class="text-gray-300">Cognorise Infotech</p>
-                                    <a href="https://www.linkedin.com/posts/ahmed-hussein-07887431a_certificate-of-completion-activity-7244406848903069697-f1WA?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFDuElwBPcqOkJgd6Xekf3FXRVhlCjJ-T1I" target="_blank" class="text-sm text-blue-400 hover:underline">View Certificate</a>
+                    <div class="space-y-6">
+                        <div class="timeline-item">
+                            <div class="glass p-6 rounded-xl">
+                                <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+                                    <div>
+                                        <h4 class="text-xl font-bold text-white">Data Science Internship</h4>
+                                        <p class="text-blue-400 text-lg">Cognorise Infotech</p>
+                                        <a href="https://www.linkedin.com/posts/ahmed-hussein-07887431a_certificate-of-completion-activity-7244406848903069697-f1WA" target="_blank" class="text-sm text-cyan-400 hover:underline">
+                                            <i class="fas fa-certificate mr-1"></i>View Certificate
+                                        </a>
+                                    </div>
+                                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">September 2024</span>
                                 </div>
-                                <p class="text-gray-400 mt-2 md:mt-0">September 2024</p>
                             </div>
-            
-                            <div class="experience-card flex flex-col md:flex-row justify-between items-start">
-                                <div>
-                                    <h4 class="text-lg font-bold text-blue-400">Machine Learning Internship</h4>
-                                    <p class="text-gray-300">Prodigy Infotech</p>
-                                    <a href="https://www.linkedin.com/posts/ahmed-hussein-07887431a_machinelearning-internship-achievement-activity-7247467534482833410-U1Vh?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFDuElwBPcqOkJgd6Xekf3FXRVhlCjJ-T1I" target="_blank" class="text-sm text-blue-400 hover:underline">View Certificate</a>
-                                </div>
-                                <p class="text-gray-400 mt-2 md:mt-0">September 2024</p>
-                            </div>
-            
-                            <div class="experience-card flex flex-col md:flex-row justify-between items-start">
-                                <div>
-                                    <h4 class="text-lg font-bold text-blue-400">Data Science Internship</h4>
-                                    <p class="text-gray-300">CodeAlpha</p>
-                                    <a href="https://www.linkedin.com/posts/ahmed-hussein-07887431a_certificate-activity-7247197902039576576-NEaV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFDuElwBPcqOkJgd6Xekf3FXRVhlCjJ-T1I" target="_blank" class="text-sm text-blue-400 hover:underline">View Certificate</a>
-                                </div>
-                                <p class="text-gray-400 mt-2 md:mt-0">September 2024</p>
-                            </div>
-            
-                            <div class="experience-card flex flex-col md:flex-row justify-between items-start">
-                                <div>
-                                    <h4 class="text-lg font-bold text-blue-400">Banking Internship</h4>
-                                    <p class="text-gray-300">Commercial International Bank (CIB)</p>
-                                    <a href="https://www.linkedin.com/posts/ahmed-hussein-07887431a_digital-transformation-and-data-literacy-activity-7254486420822573056-rlVV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFDuElwBPcqOkJgd6Xekf3FXRVhlCjJ-T1I" target="_blank" class="text-sm text-blue-400 hover:underline">View Certificate</a>
-                                </div>
-                                <p class="text-gray-400 mt-2 md:mt-0">September 2024</p>
-                            </div>
-            
-                            <div class="experience-card flex flex-col md:flex-row justify-between items-start">
-                                <div>
-                                    <h4 class="text-lg font-bold text-blue-400">Data Analytics Bootcamp</h4>
-                                    <p class="text-gray-300">Eyooth</p>
-                                    <a href="https://drive.google.com/file/d/1onlkjruFPKMD08yqB4WCk65gJ1Eju-dT/view?usp=drive_link" target="_blank" class="text-sm text-blue-400 hover:underline">View Certificate</a>
-                                </div>
-                                <p class="text-gray-400 mt-2 md:mt-0">September 2024</p>
-                            </div>
-            
                         </div>
-                    </div>
-    
-                    <div class="max-w-4xl mx-auto">
-                        <h3 class="text-2xl font-bold mb-6 text-blue-400">
-                            <i class="fas fa-certificate"></i> Certifications
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-6">
-                    
-                            <a href="https://www.udemy.com/certificate/UC-92cbc004-7a72-4006-b2d1-1b140825e74a/" target="_blank" class="experience-card block p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
-                                <h4 class="text-lg font-bold text-white">Python Crash Course</h4>
-                                <p class="text-gray-400">Udemy - Dive into Coding with Hands-On Projects</p>
-                            </a>
-                    
-                            <a href="https://www.udemy.com/certificate/UC-6b44279e-dbef-4527-9759-cdcc1055be1d/" target="_blank" class="experience-card block p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
-                                <h4 class="text-lg font-bold text-white">Data Manipulation in Python</h4>
-                                <p class="text-gray-400">Udemy - Master Python, Numpy & Pandas</p>
-                            </a>
-                    
-                            <a href="https://olympus.mygreatlearning.com/courses/40120/certificate?pb_id=581" target="_blank" class="experience-card block p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
-                                <h4 class="text-lg font-bold text-white">SQL for Data Science</h4>
-                                <p class="text-gray-400">Great Learning</p>
-                            </a>
-                    
-                            <a href="https://www.udemy.com/certificate/UC-d9edac6d-57bf-4801-8d86-3f1523215a9c/" target="_blank" class="experience-card block p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
-                                <h4 class="text-lg font-bold text-white">Database Management Systems</h4>
-                                <p class="text-gray-400">Udemy - Introduction to Database Management</p>
-                            </a>
-                    
-                            <a href="https://www.udemy.com/certificate/UC-1a81deaa-f18e-422f-9215-2d89ed6566fa/" target="_blank" class="experience-card block p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
-                                <h4 class="text-lg font-bold text-white">Microsoft SQL Server Course</h4>
-                                <p class="text-gray-400">Udemy - Complete Course from A to Z</p>
-                            </a>
-                    
-                            <a href="https://www.udemy.com/certificate/UC-bf21b576-5d96-419a-950e-c482fbd5f80c/" target="_blank" class="experience-card block p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition">
-                                <h4 class="text-lg font-bold text-white">Excel Data Analysis Course</h4>
-                                <p class="text-gray-400">Udemy - Complete Microsoft Excel Course</p>
-                            </a>
-                    
+
+                        <div class="timeline-item">
+                            <div class="glass p-6 rounded-xl">
+                                <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+                                    <div>
+                                        <h4 class="text-xl font-bold text-white">Machine Learning Internship</h4>
+                                        <p class="text-blue-400 text-lg">Prodigy Infotech</p>
+                                        <a href="https://www.linkedin.com/posts/ahmed-hussein-07887431a_machinelearning-internship-achievement-activity-7247467534482833410-U1Vh" target="_blank" class="text-sm text-cyan-400 hover:underline">
+                                            <i class="fas fa-certificate mr-1"></i>View Certificate
+                                        </a>
+                                    </div>
+                                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">September 2024</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="timeline-item">
+                            <div class="glass p-6 rounded-xl">
+                                <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+                                    <div>
+                                        <h4 class="text-xl font-bold text-white">Data Science Internship</h4>
+                                        <p class="text-blue-400 text-lg">CodeAlpha</p>
+                                        <a href="https://www.linkedin.com/posts/ahmed-hussein-07887431a_certificate-activity-7247197902039576576-NEaV" target="_blank" class="text-sm text-cyan-400 hover:underline">
+                                            <i class="fas fa-certificate mr-1"></i>View Certificate
+                                        </a>
+                                    </div>
+                                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">September 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="glass p-6 rounded-xl">
+                                <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+                                    <div>
+                                        <h4 class="text-xl font-bold text-white">Banking Internship</h4>
+                                        <p class="text-blue-400 text-lg">Commercial International Bank (CIB)</p>
+                                        <a href="https://www.linkedin.com/posts/ahmed-hussein-07887431a_digital-transformation-and-data-literacy-activity-7254486420822573056-rlVV" target="_blank" class="text-sm text-cyan-400 hover:underline">
+                                            <i class="fas fa-certificate mr-1"></i>View Certificate
+                                        </a>
+                                    </div>
+                                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">September 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="glass p-6 rounded-xl">
+                                <div class="flex flex-col md:flex-row justify-between items-start mb-4">
+                                    <div>
+                                        <h4 class="text-xl font-bold text-white">Data Analytics Bootcamp</h4>
+                                        <p class="text-blue-400 text-lg">Eyooth</p>
+                                        <a href="https://drive.google.com/file/d/1onlkjruFPKMD08yqB4WCk65gJ1Eju-dT/view?usp=drive_link" target="_blank" class="text-sm text-cyan-400 hover:underline">
+                                            <i class="fas fa-certificate mr-1"></i>View Certificate
+                                        </a>
+                                    </div>
+                                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">September 2024</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Certifications -->
+                <div class="glass-card p-8">
+                    <h3 class="text-3xl font-bold mb-8 text-blue-400">
+                        <i class="fas fa-certificate mr-3"></i>Professional Certifications
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <a href="https://www.udemy.com/certificate/UC-92cbc004-7a72-4006-b2d1-1b140825e74a/" target="_blank" class="glass p-6 rounded-xl hover:bg-gray-700 transition-all duration-300 block">
+                            <h4 class="text-lg font-bold text-white mb-2">Python Crash Course</h4>
+                            <p class="text-gray-400">Udemy - Dive into Coding with Hands-On Projects</p>
+                        </a>
+
+                        <a href="https://www.udemy.com/certificate/UC-6b44279e-dbef-4527-9759-cdcc1055be1d/" target="_blank" class="glass p-6 rounded-xl hover:bg-gray-700 transition-all duration-300 block">
+                            <h4 class="text-lg font-bold text-white mb-2">Data Manipulation in Python</h4>
+                            <p class="text-gray-400">Udemy - Master Python, Numpy & Pandas</p>
+                        </a>
+
+                        <a href="https://olympus.mygreatlearning.com/courses/40120/certificate?pb_id=581" target="_blank" class="glass p-6 rounded-xl hover:bg-gray-700 transition-all duration-300 block">
+                            <h4 class="text-lg font-bold text-white mb-2">SQL for Data Science</h4>
+                            <p class="text-gray-400">Great Learning</p>
+                        </a>
+
+                        <a href="https://www.udemy.com/certificate/UC-d9edac6d-57bf-4801-8d86-3f1523215a9c/" target="_blank" class="glass p-6 rounded-xl hover:bg-gray-700 transition-all duration-300 block">
+                            <h4 class="text-lg font-bold text-white mb-2">Database Management Systems</h4>
+                            <p class="text-gray-400">Udemy - Introduction to Database Management</p>
+                        </a>
+
+                        <a href="https://www.udemy.com/certificate/UC-1a81deaa-f18e-422f-9215-2d89ed6566fa/" target="_blank" class="glass p-6 rounded-xl hover:bg-gray-700 transition-all duration-300 block">
+                            <h4 class="text-lg font-bold text-white mb-2">Microsoft SQL Server Course</h4>
+                            <p class="text-gray-400">Udemy - Complete Course from A to Z</p>
+                        </a>
+
+                        <a href="https://www.udemy.com/certificate/UC-bf21b576-5d96-419a-950e-c482fbd5f80c/" target="_blank" class="glass p-6 rounded-xl hover:bg-gray-700 transition-all duration-300 block">
+                            <h4 class="text-lg font-bold text-white mb-2">Excel Data Analysis Course</h4>
+                            <p class="text-gray-400">Udemy - Complete Microsoft Excel Course</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900">
+    <section class="py-20">
         <div class="container mx-auto px-6">
             <h2 class="section-title gradient-text">Let's Connect</h2>
+            
             <div class="max-w-4xl mx-auto text-center">
-                <p class="text-lg text-gray-300 mb-12">
-                    Ready to collaborate on your next Data Science or AI project? I'm always excited to discuss innovative solutions and new opportunities.
+                <p class="text-xl text-gray-300 mb-12 leading-relaxed">
+                    Ready to collaborate on your next Data Science or AI project? I'm always excited to discuss 
+                    innovative solutions and explore new opportunities in the field of artificial intelligence.
                 </p>
-                
+
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                    <div class="text-center">
-                        <i class="fas fa-envelope text-3xl text-blue-400 mb-4"></i>
+                    <div class="glass-card p-6 text-center">
+                        <i class="fas fa-envelope text-4xl text-blue-400 mb-4"></i>
                         <h3 class="text-lg font-bold mb-2">Email</h3>
-                        <p class="text-gray-400">ahmedhussein12215@gmail.com</p>
+                        <p class="text-gray-400 text-sm">ahmedhussein12215@gmail.com</p>
                     </div>
-                    <div class="text-center">
-                        <i class="fas fa-phone text-3xl text-blue-400 mb-4"></i>
+
+                    <div class="glass-card p-6 text-center">
+                        <i class="fas fa-phone text-4xl text-green-400 mb-4"></i>
                         <h3 class="text-lg font-bold mb-2">Phone</h3>
-                        <p class="text-gray-400">01099846934</p>
+                        <p class="text-gray-400 text-sm">01099846934</p>
                     </div>
-                    <div class="text-center">
-                        <i class="fab fa-github text-3xl text-blue-400 mb-4"></i>
+
+                    <div class="glass-card p-6 text-center">
+                        <i class="fab fa-github text-4xl text-purple-400 mb-4"></i>
                         <h3 class="text-lg font-bold mb-2">GitHub</h3>
-                        <p class="text-gray-400">A7med668</p>
+                        <p class="text-gray-400 text-sm">A7med668</p>
                     </div>
-                    
-                    <div class="text-center">
-                        <i class="fas fa-map-marker-alt text-3xl text-blue-400 mb-4"></i>
+
+                    <div class="glass-card p-6 text-center">
+                        <i class="fas fa-map-marker-alt text-4xl text-red-400 mb-4"></i>
                         <h3 class="text-lg font-bold mb-2">Location</h3>
-                        <p class="text-gray-400">Menofia, Egypt</p>
+                        <p class="text-gray-400 text-sm">Menofia, Egypt</p>
                     </div>
                 </div>
 
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <a href="mailto:ahmedhussein12215@gmail.com" class="btn-github">
-                        <i class="fas fa-envelope"></i> Send Email
+                <div class="flex flex-col md:flex-row gap-6 justify-center">
+                    <a href="mailto:ahmedhussein12215@gmail.com" class="btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        Send Email
                     </a>
-                    <a href="https://github.com/A7med668" target="_blank" class="btn-github">
-                        <i class="fab fa-github"></i> Visit GitHub
+                    <a href="https://github.com/A7med668" target="_blank" class="btn-secondary">
+                        <i class="fab fa-github"></i>
+                        Visit GitHub
                     </a>
                 </div>
             </div>
@@ -574,15 +791,18 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 bg-black text-center">
-        <div class="container mx-auto px-6">
-            <p class="text-gray-400">&copy; 2024 Ahmed Hussein Ali Abdelsalam Hussein. All rights reserved.</p>
-            <p class="text-gray-500 text-sm mt-2">Data Science Student & AI Enthusiast</p>
+    <footer class="py-12 glass border-t border-gray-700">
+        <div class="container mx-auto px-6 text-center">
+            <div class="gradient-text text-2xl font-bold mb-4">Ahmed Hussein</div>
+            <p class="text-gray-400 mb-4">Data Science Student & AI Enthusiast</p>
+            <p class="text-gray-500 text-sm">
+                &copy; 2024 Ahmed Hussein Ali Abdelsalam Hussein. All rights reserved.
+            </p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -595,14 +815,45 @@
                 }
             });
         });
-        // Add scroll effect to navbar
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
-            } else {
-                navbar.style.background = 'rgba(15, 23, 42, 0.9)';
-            }
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add parallax effect to floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            
+            document.querySelectorAll('.floating-element').forEach(element => {
+                element.style.transform = `translateY(${parallax}px)`;
+            });
+        });
+
+        // Add hover effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
         });
     </script>
 </body>
