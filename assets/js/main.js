@@ -257,3 +257,13 @@ async function initHero3D(){
   }
 }
 initHero3D();
+
+
+// V5: public project media gracefully falls back if GitHub raw media is unavailable.
+const publicProjectShot = document.querySelector("#agentStudioShot");
+publicProjectShot?.addEventListener("error", () => {
+  publicProjectShot.closest(".media-screen")?.classList.add("image-error");
+});
+publicProjectShot?.addEventListener("load", () => {
+  publicProjectShot.closest(".media-screen")?.classList.remove("image-error");
+});
