@@ -1,1108 +1,357 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#050816" />
+  <meta name="description" content="Ahmed Hussein — Data Science graduate building practical AI, RAG, LLM, computer vision, analytics, and cybersecurity systems." />
+  <meta property="og:title" content="Ahmed Hussein | AI & Data Science Portfolio" />
+  <meta property="og:description" content="Data Science graduate with hands-on work across RAG, LLMs, NLP, computer vision, OCR, digital forensics, analytics, and cybersecurity AI." />
+  <meta property="og:type" content="website" />
   <title>Ahmed Hussein | AI & Data Science Portfolio</title>
 
-  <meta
-    name="description"
-    content="Ahmed Hussein - AI and Data Science portfolio showcasing RAG, LLMs, NLP, Computer Vision, OCR, Financial Analytics, Cybersecurity Analytics, and Streamlit AI applications."
-  />
-  <meta name="author" content="Ahmed Hussein Ali Abdelsalam Hussein" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Ahmed Hussein | AI & Data Science Portfolio" />
-  <meta
-    property="og:description"
-    content="Portfolio of Ahmed Hussein, Data Science undergraduate building practical AI systems across RAG, LLMs, NLP, CV, OCR, financial analytics, and cybersecurity."
-  />
-  <meta property="og:type" content="website" />
-
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
     :root {
-      --bg-main: #050816;
-      --bg-secondary: #0b1024;
-      --bg-card: rgba(15, 23, 42, 0.76);
-      --border-soft: rgba(148, 163, 184, 0.16);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --blue: #3b82f6;
-      --cyan: #06b6d4;
-      --purple: #8b5cf6;
-      --green: #22c55e;
+      --bg: #050816;
+      --panel: rgba(15, 23, 42, .72);
+      --line: rgba(148, 163, 184, .18);
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "Inter", sans-serif;
+      font-family: Inter, system-ui, sans-serif;
+      color: #e5eefb;
       background:
-        radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 36rem),
-        radial-gradient(circle at top right, rgba(139, 92, 246, 0.16), transparent 34rem),
-        radial-gradient(circle at 50% 20%, rgba(6, 182, 212, 0.1), transparent 28rem),
-        linear-gradient(135deg, #050816 0%, #0b1024 48%, #111827 100%);
-      color: var(--text-main);
-      overflow-x: hidden;
+        radial-gradient(circle at 12% 10%, rgba(59,130,246,.16), transparent 28rem),
+        radial-gradient(circle at 85% 18%, rgba(6,182,212,.14), transparent 24rem),
+        radial-gradient(circle at 55% 82%, rgba(168,85,247,.10), transparent 28rem),
+        var(--bg);
     }
-
-    .font-mono {
-      font-family: "JetBrains Mono", monospace;
-    }
-
+    .mono { font-family: "JetBrains Mono", monospace; }
     .glass {
-      background: rgba(15, 23, 42, 0.68);
-      border: 1px solid var(--border-soft);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 24px 80px rgba(0,0,0,.22);
     }
-
-    .glass-light {
-      background: rgba(255, 255, 255, 0.055);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #60a5fa, #22d3ee, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .section-title {
-      font-size: clamp(2.1rem, 5vw, 3.3rem);
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      line-height: 1.08;
-    }
-
-    .section-subtitle {
-      color: #94a3b8;
-      max-width: 760px;
-      margin: 1rem auto 0;
-      font-size: 1.05rem;
-      line-height: 1.8;
-    }
-
-    .nav-link {
-      color: #cbd5e1;
-      font-weight: 600;
-      font-size: 0.92rem;
-      transition: 0.25s ease;
-    }
-
-    .nav-link:hover {
-      color: #67e8f9;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.65rem;
-      padding: 0.9rem 1.35rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #2563eb, #06b6d4);
-      color: #fff;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 18px 50px rgba(37, 99, 235, 0.35);
-      transition: 0.28s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 24px 70px rgba(6, 182, 212, 0.32);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.65rem;
-      padding: 0.86rem 1.25rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.72);
-      border: 1px solid rgba(96, 165, 250, 0.38);
-      color: #dbeafe;
-      font-weight: 800;
-      text-decoration: none;
-      transition: 0.28s ease;
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      background: rgba(59, 130, 246, 0.15);
-      border-color: rgba(103, 232, 249, 0.6);
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.42rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(59, 130, 246, 0.11);
-      border: 1px solid rgba(96, 165, 250, 0.22);
-      color: #bfdbfe;
-      font-size: 0.82rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
     .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: 1.5rem;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      transition: 0.32s ease;
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(180deg, rgba(15,23,42,.82), rgba(8,15,32,.78));
+      border: 1px solid var(--line);
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
     }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 3px;
-      background: linear-gradient(90deg, #3b82f6, #06b6d4, #8b5cf6);
-      opacity: 0;
-      transition: 0.32s ease;
-    }
-
     .card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(96, 165, 250, 0.38);
-      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
+      transform: translateY(-4px);
+      border-color: rgba(34,211,238,.35);
+      box-shadow: 0 18px 60px rgba(2,8,23,.42);
     }
-
-    .card:hover::before {
-      opacity: 1;
+    .gradient-text {
+      background: linear-gradient(90deg,#93c5fd,#67e8f9,#c4b5fd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-
-    .timeline-item {
-      position: relative;
-      padding-left: 2rem;
+    .tag {
+      display:inline-flex; align-items:center; gap:.4rem;
+      border:1px solid rgba(148,163,184,.18);
+      background:rgba(15,23,42,.66);
+      color:#cbd5e1;
+      border-radius:999px;
+      padding:.5rem .75rem;
+      font-size:.78rem;
+      font-weight:700;
     }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      top: 0.35rem;
-      left: 0;
-      width: 0.8rem;
-      height: 0.8rem;
-      border-radius: 999px;
-      background: #22d3ee;
-      box-shadow: 0 0 0 7px rgba(34, 211, 238, 0.12);
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:.65rem;
+      border-radius:1rem; padding:.9rem 1.15rem; font-weight:800; transition:.2s ease;
     }
-
-    .timeline-item::after {
-      content: "";
-      position: absolute;
-      top: 1.2rem;
-      left: 0.38rem;
-      width: 1px;
-      height: calc(100% + 1.2rem);
-      background: linear-gradient(to bottom, rgba(34, 211, 238, 0.45), transparent);
-    }
-
-    .timeline-item:last-child::after {
-      display: none;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: 0.7s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .hero-grid {
-      background-image:
-        linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-      background-size: 42px 42px;
-      mask-image: linear-gradient(to bottom, black, transparent 82%);
-    }
-
-    @media (max-width: 768px) {
-      .desktop-nav {
-        display: none;
-      }
+    .btn-primary { background:linear-gradient(90deg,#2563eb,#0891b2); color:white; }
+    .btn-primary:hover { transform:translateY(-2px); filter:brightness(1.08); }
+    .btn-secondary { border:1px solid rgba(148,163,184,.22); background:rgba(15,23,42,.72); color:#e2e8f0; }
+    .btn-secondary:hover { border-color:rgba(103,232,249,.45); transform:translateY(-2px); }
+    .section-title { font-size:clamp(2rem,4vw,3.5rem); font-weight:900; letter-spacing:-.04em; }
+    .section-subtitle { color:#94a3b8; max-width:48rem; line-height:1.8; margin:.8rem auto 0; }
+    .stat { background:rgba(15,23,42,.62); border:1px solid var(--line); }
+    .timeline { border-left:1px solid rgba(103,232,249,.28); }
+    .timeline-item { position:relative; padding-left:1.5rem; }
+    .timeline-item:before {
+      content:""; position:absolute; left:-.38rem; top:.4rem; width:.72rem; height:.72rem;
+      border-radius:999px; background:#67e8f9; box-shadow:0 0 0 .35rem rgba(103,232,249,.08);
     }
   </style>
 </head>
+<body class="selection:bg-cyan-300 selection:text-slate-950">
 
-<body>
-  <!-- Background Grid -->
-  <div class="hero-grid fixed inset-0 pointer-events-none opacity-50"></div>
-
-  <!-- Navbar -->
-  <header class="fixed top-0 left-0 right-0 z-50 border-b border-slate-800/80 bg-slate-950/70 backdrop-blur-xl">
-    <nav class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-      <a href="#home" class="text-xl font-black gradient-text tracking-tight">
-        Ahmed Hussein
-      </a>
-
-      <div class="desktop-nav flex items-center gap-7">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </div>
-
-      <a href="#contact" class="hidden sm:inline-flex btn-secondary text-sm py-2 px-4">
-        Hire Me
-      </a>
-
-      <button
-        id="menuBtn"
-        class="md:hidden text-slate-200 text-2xl"
-        aria-label="Open navigation menu"
-      >
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </nav>
-
-    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 bg-slate-950/95">
-      <div class="px-5 py-4 flex flex-col gap-4">
-        <a href="#about" class="nav-link mobile-link">About</a>
-        <a href="#skills" class="nav-link mobile-link">Skills</a>
-        <a href="#projects" class="nav-link mobile-link">Projects</a>
-        <a href="#experience" class="nav-link mobile-link">Experience</a>
-        <a href="#contact" class="nav-link mobile-link">Contact</a>
-      </div>
+<header class="fixed inset-x-0 top-0 z-50 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur-xl">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-3 font-black text-lg">
+      <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 grid place-items-center">AH</span>
+      <span>Ahmed Hussein</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-bold text-slate-300">
+      <a href="#about" class="hover:text-cyan-300">About</a>
+      <a href="#experience" class="hover:text-cyan-300">Experience</a>
+      <a href="#projects" class="hover:text-cyan-300">Projects</a>
+      <a href="#skills" class="hover:text-cyan-300">Skills</a>
+      <a href="#contact" class="hover:text-cyan-300">Contact</a>
     </div>
-  </header>
+    <a href="resume/Ahmed Hussein.pdf" download class="btn btn-secondary text-sm">
+      <i class="fa-solid fa-download"></i> CV
+    </a>
+  </nav>
+</header>
 
-  <!-- Hero -->
-  <main>
-    <section id="home" class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-12 gap-12 items-center">
-          <div class="lg:col-span-7 text-center lg:text-left reveal active">
-            <p class="font-mono text-cyan-300 font-bold mb-5">
-              AI & Data Science Undergraduate
-            </p>
-
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight mb-6">
-              Building practical
-              <span class="gradient-text">AI systems</span>
-              that solve real problems.
-            </h1>
-
-            <p class="text-lg sm:text-xl text-slate-300 leading-8 max-w-3xl mx-auto lg:mx-0 mb-8">
-              I’m Ahmed Hussein, a Data Science student at the Faculty of Artificial Intelligence,
-              Menofia University. I build end-to-end AI applications across RAG, LLMs, NLP,
-              computer vision, OCR, financial analytics, and cybersecurity analytics.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-              <a href="#projects" class="btn-primary">
-                <i class="fa-solid fa-layer-group"></i>
-                View Projects
-              </a>
-              <a href="resume/Ahmed Hussein.pdf" download class="btn-secondary">
-                <i class="fa-solid fa-download"></i>
-                Download CV
-              </a>
-              <a
-                href="https://github.com/A7med668"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-secondary"
-              >
-                <i class="fa-brands fa-github"></i>
-                GitHub
-              </a>
-            </div>
-
-            <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <span class="tag">Python</span>
-              <span class="tag">Streamlit</span>
-              <span class="tag">LangChain</span>
-              <span class="tag">LangGraph</span>
-              <span class="tag">TensorFlow</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">FAISS</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 reveal">
-            <div class="glass rounded-3xl p-6 sm:p-8">
-              <div class="flex items-center gap-4 mb-7">
-                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-3xl font-black">
-                  AH
-                </div>
-                <div>
-                  <h2 class="text-2xl font-black">Ahmed Hussein</h2>
-                  <p class="text-slate-400">AI & Data Science Portfolio</p>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-2 gap-4">
-                <div class="glass-light rounded-2xl p-5">
-                  <p class="text-3xl font-black text-blue-300">3.63</p>
-                  <p class="text-sm text-slate-400 font-semibold mt-1">GPA</p>
-                </div>
-                <div class="glass-light rounded-2xl p-5">
-                  <p class="text-3xl font-black text-cyan-300">8+</p>
-                  <p class="text-sm text-slate-400 font-semibold mt-1">AI Projects</p>
-                </div>
-                <div class="glass-light rounded-2xl p-5">
-                  <p class="text-3xl font-black text-purple-300">6</p>
-                  <p class="text-sm text-slate-400 font-semibold mt-1">Training Programs</p>
-                </div>
-                <div class="glass-light rounded-2xl p-5">
-                  <p class="text-3xl font-black text-green-300">2026</p>
-                  <p class="text-sm text-slate-400 font-semibold mt-1">Graduation</p>
-                </div>
-              </div>
-
-              <div class="mt-6 glass-light rounded-2xl p-5">
-                <p class="text-sm uppercase tracking-widest text-cyan-300 font-black mb-3">
-                  Main Focus
-                </p>
-                <p class="text-slate-300 leading-7">
-                  RAG applications, LLM assistants, data dashboards, OCR pipelines,
-                  computer vision models, and cybersecurity investigation tools.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- About -->
-  <section id="about" class="py-24 relative">
-    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 reveal">
-        <h2 class="section-title gradient-text">About Me</h2>
-        <p class="section-subtitle">
-          I combine data science, software engineering, and modern AI tooling to build useful,
-          deployable applications.
+<main>
+<section id="home" class="min-h-screen flex items-center pt-28 pb-20">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        <p class="mono text-cyan-300 font-bold mb-5">DATA SCIENCE · AI · APPLIED RESEARCH</p>
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
+          Building <span class="gradient-text">reliable AI systems</span> from research to product.
+        </h1>
+        <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-8 max-w-3xl">
+          I’m Ahmed Hussein, a Data Science graduate from the Faculty of Artificial Intelligence,
+          Menofia University. I build end-to-end solutions across machine learning, RAG, LLMs,
+          NLP, computer vision, OCR, digital forensics, analytics, and cybersecurity AI.
         </p>
-      </div>
 
-      <div class="grid lg:grid-cols-2 gap-8">
-        <div class="card p-7 sm:p-8 reveal">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-14 h-14 rounded-2xl bg-blue-500/15 text-blue-300 flex items-center justify-center text-2xl">
-              <i class="fa-solid fa-user-graduate"></i>
-            </div>
-            <h3 class="text-2xl font-black">Who I Am</h3>
-          </div>
-
-          <p class="text-slate-300 leading-8 mb-6">
-            I am Ahmed Hussein Ali Abdelsalam Hussein, a fourth-year Data Science student
-            at the Faculty of Artificial Intelligence, Menofia University. My work focuses on
-            building AI applications that are practical, interactive, and useful for real-world
-            decision-making.
-          </p>
-
-          <p class="text-slate-300 leading-8">
-            My portfolio includes projects in Retrieval-Augmented Generation, multi-agent systems,
-            NLP, computer vision, OCR, medical report summarization, financial advisory systems,
-            threat hunting, and business intelligence.
-          </p>
+        <div class="flex flex-col sm:flex-row gap-4 mt-9">
+          <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-layer-group"></i> View Projects</a>
+          <a href="resume/Ahmed Hussein.pdf" download class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+          <a href="https://github.com/A7med668" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
         </div>
 
-        <div class="card p-7 sm:p-8 reveal">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-14 h-14 rounded-2xl bg-cyan-500/15 text-cyan-300 flex items-center justify-center text-2xl">
-              <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-            <h3 class="text-2xl font-black">Education</h3>
-          </div>
+        <div class="flex flex-wrap gap-2.5 mt-8">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">RAG</span>
+          <span class="tag">LLMs</span><span class="tag">LangGraph</span><span class="tag">Computer Vision</span>
+          <span class="tag">Docker</span><span class="tag">Power BI</span>
+        </div>
+      </div>
 
-          <div class="space-y-4 text-slate-300">
-            <div class="flex justify-between gap-5 border-b border-slate-800 pb-3">
-              <span class="text-slate-400">University</span>
-              <strong class="text-right">Faculty of Artificial Intelligence, Menofia University</strong>
+      <div class="lg:col-span-5">
+        <div class="glass rounded-3xl p-7">
+          <div class="flex items-center gap-4 mb-7">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 grid place-items-center text-3xl font-black">AH</div>
+            <div>
+              <h2 class="text-2xl font-black">Ahmed Hussein</h2>
+              <p class="text-slate-400">AI & Data Science Portfolio</p>
             </div>
-            <div class="flex justify-between gap-5 border-b border-slate-800 pb-3">
-              <span class="text-slate-400">Major</span>
-              <strong>Data Science</strong>
-            </div>
-            <div class="flex justify-between gap-5 border-b border-slate-800 pb-3">
-              <span class="text-slate-400">GPA</span>
-              <strong>3.63</strong>
-            </div>
-            <div class="flex justify-between gap-5 border-b border-slate-800 pb-3">
-              <span class="text-slate-400">Period</span>
-              <strong>2022 - 2026</strong>
-            </div>
-            <div class="flex justify-between gap-5">
-              <span class="text-slate-400">Location</span>
-              <strong>Menofia, Egypt</strong>
-            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="stat rounded-2xl p-5"><p class="text-3xl font-black text-blue-300">3.67</p><p class="text-sm text-slate-400 font-semibold mt-1">GPA</p></div>
+            <div class="stat rounded-2xl p-5"><p class="text-3xl font-black text-cyan-300">3rd</p><p class="text-sm text-slate-400 font-semibold mt-1">Dept. Rank</p></div>
+            <div class="stat rounded-2xl p-5"><p class="text-3xl font-black text-purple-300">14+</p><p class="text-sm text-slate-400 font-semibold mt-1">Selected Projects</p></div>
+            <div class="stat rounded-2xl p-5"><p class="text-3xl font-black text-emerald-300">2026</p><p class="text-sm text-slate-400 font-semibold mt-1">Graduation</p></div>
+          </div>
+          <div class="stat rounded-2xl p-5 mt-4">
+            <p class="mono text-xs uppercase tracking-widest text-cyan-300 font-black mb-2">Academic distinction</p>
+            <p class="text-slate-300 font-semibold">Excellent with Honors · Ranked 3rd in the Data Science Department (Years 2, 3 & 4)</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Skills -->
-  <section id="skills" class="py-24">
-    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 reveal">
-        <h2 class="section-title gradient-text">Technical Skills</h2>
-        <p class="section-subtitle">
-          A focused stack for building complete AI products, from data pipelines and models
-          to dashboards and user-facing applications.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="card p-7 reveal">
-          <div class="text-4xl text-blue-300 mb-5">
-            <i class="fa-solid fa-code"></i>
-          </div>
-          <h3 class="text-xl font-black mb-4">Languages</h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">Python</span>
-            <span class="tag">SQL</span>
-          </div>
-        </div>
-
-        <div class="card p-7 reveal">
-          <div class="text-4xl text-cyan-300 mb-5">
-            <i class="fa-solid fa-brain"></i>
-          </div>
-          <h3 class="text-xl font-black mb-4">AI / ML</h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Deep Learning</span>
-            <span class="tag">NLP</span>
-            <span class="tag">Computer Vision</span>
-            <span class="tag">RAG</span>
-            <span class="tag">LLMs</span>
-            <span class="tag">Agentic AI</span>
-            <span class="tag">OCR</span>
-          </div>
-        </div>
-
-        <div class="card p-7 reveal">
-          <div class="text-4xl text-purple-300 mb-5">
-            <i class="fa-solid fa-cubes"></i>
-          </div>
-          <h3 class="text-xl font-black mb-4">Frameworks</h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">Streamlit</span>
-            <span class="tag">LangGraph</span>
-            <span class="tag">LangChain</span>
-            <span class="tag">TensorFlow</span>
-            <span class="tag">Keras</span>
-            <span class="tag">PyTorch</span>
-            <span class="tag">scikit-learn</span>
-            <span class="tag">Hugging Face</span>
-          </div>
-        </div>
-
-        <div class="card p-7 reveal">
-          <div class="text-4xl text-green-300 mb-5">
-            <i class="fa-solid fa-database"></i>
-          </div>
-          <h3 class="text-xl font-black mb-4">Tools & Data</h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">FAISS</span>
-            <span class="tag">Qdrant</span>
-            <span class="tag">ChromaDB</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Pandas</span>
-            <span class="tag">NumPy</span>
-            <span class="tag">Plotly</span>
-            <span class="tag">Matplotlib</span>
-            <span class="tag">OpenCV</span>
-            <span class="tag">Git/GitHub</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-6 mt-6">
-        <div class="card p-7 reveal">
-          <h3 class="text-xl font-black mb-4">
-            <i class="fa-solid fa-shield-halved text-blue-300 mr-2"></i>
-            Cybersecurity
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">MASVS</span>
-            <span class="tag">Mobile Security</span>
-            <span class="tag">MITRE ATT&CK</span>
-            <span class="tag">Androguard</span>
-            <span class="tag">Scapy</span>
-          </div>
-        </div>
-
-        <div class="card p-7 reveal">
-          <h3 class="text-xl font-black mb-4">
-            <i class="fa-solid fa-plug text-cyan-300 mr-2"></i>
-            APIs & Models
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">Google Gemini API</span>
-            <span class="tag">Ollama</span>
-            <span class="tag">Llama 3</span>
-            <span class="tag">BART-large-CNN</span>
-            <span class="tag">LangSmith</span>
-            <span class="tag">Tavily</span>
-            <span class="tag">DuckDuckGo</span>
-            <span class="tag">Ngrok</span>
-          </div>
-        </div>
-      </div>
+<section id="about" class="py-24">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="section-title gradient-text">About Me</h2>
+      <p class="section-subtitle">A data scientist focused on building practical, explainable, and useful AI systems.</p>
     </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="py-24">
-    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 reveal">
-        <h2 class="section-title gradient-text">Featured Projects</h2>
-        <p class="section-subtitle">
-          Selected end-to-end AI applications from my portfolio. Replace the GitHub buttons
-          with exact repository URLs when each repo is ready.
-        </p>
-      </div>
-
-      <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        <article class="card p-7 reveal">
-          <div class="flex items-start gap-4 mb-5">
-            <div class="w-14 h-14 rounded-2xl bg-blue-500/15 text-blue-300 flex items-center justify-center text-2xl">
-              <i class="fa-solid fa-mobile-screen-button"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-black leading-snug">
-                LangGraph Multi-Agent Mobile Security Assistant
-              </h3>
-              <p class="text-slate-400 text-sm mt-1">Agentic AI + Mobile Security</p>
-            </div>
-          </div>
-
-          <p class="text-slate-300 leading-7 mb-5">
-            Built a multi-agent mobile security assistant with Guard, Cache, Router,
-            Query Optimizer, Memory, Database, Retriever, Web Search, and Response agents.
-          </p>
-
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tag">Python</span>
-            <span class="tag">LangGraph</span>
-            <span class="tag">Streamlit</span>
-            <span class="tag">Ollama</span>
-            <span class="tag">LangChain</span>
-            <span class="tag">Qdrant</span>
-            <span class="tag">FAISS</span>
-          </div>
-
-          <a href="https://github.com/A7med668" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full">
-            <i class="fa-brands fa-github"></i>
-            View Repository
-          </a>
-        </article>
-
-        <article class="card p-7 reveal">
-          <div class="flex items-start gap-4 mb-5">
-            <div class="w-14 h-14 rounded-2xl bg-green-500/15 text-green-300 flex items-center justify-center text-2xl">
-              <i class="fa-solid fa-wallet"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-black leading-snug">
-                AI-Powered Financial Advisory Platform
-              </h3>
-              <p class="text-slate-400 text-sm mt-1">Financial Analytics + AI Insights</p>
-            </div>
-          </div>
-
-          <p class="text-slate-300 leading-7 mb-5">
-            Developed a financial advisory platform that analyzes user financial data and
-            generates personalized savings, investment, and debt-management recommendations.
-          </p>
-
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tag">Python</span>
-            <span class="tag">Streamlit</span>
-            <span class="tag">Hugging Face</span>
-            <span class="tag">Plotly</span>
-            <span class="tag">LangChain</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Pandas</span>
-          </div>
-
-          <a href="https://github.com/A7med668" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full">
-            <i class="fa-brands fa-github"></i>
-            View Repository
-          </a>
-        </article>
-
-        <article class="card p-7 reveal">
-          <div class="flex items-start gap-4 mb-5">
-            <div class="w-14 h-14 rounded-2xl bg-red-500/15 text-red-300 flex items-center justify-center text-2xl">
-              <i class="fa-solid fa-file-pdf"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-black leading-snug">
-                Document Q&A System
-              </h3>
-              <p class="text-slate-400 text-sm mt-1">RAG + PDF Question Answering</p>
-            </div>
-          </div>
-
-          <p class="text-slate-300 leading-7 mb-5">
-            Implemented a RAG pipeline for PDF extraction, intelligent chunking, embeddings,
-            FAISS semantic search, and Gemini-based answer generation.
-          </p>
-
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tag">Streamlit</span>
-            <span class="tag">FAISS</span>
-            <span class="tag">LangChain</span>
-            <span class="tag">Sentence Transformers</span>
-            <span class="tag">Gemini API</span>
-            <span class="tag">PyPDF2</span>
-          </div>
-
-          <a href="https://github.com/A7med668" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full">
-            <i class="fa-brands fa-github"></i>
-            View Repository
-          </a>
-        </article>
-
-        <article class="card p-7 reveal">
-          <div class="flex items-start gap-4 mb-5">
-            <div class="w-14 h-14 rounded-2xl bg-pink-500/15 text-pink-300 flex items-center justify-center text-2xl">
-              <i class="fa-solid fa-notes-medical"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-black leading-snug">
-                OllamaMed - Medical Report Summarizer
-              </h3>
-              <p class="text-slate-400 text-sm mt-1">Local LLM + OCR</p>
-            </div>
-          </div>
-
-          <p class="text-slate-300 leading-7 mb-5">
-            Built a privacy-focused local pipeline that processes medical PDFs and images
-            using OCR and a locally deployed Llama 3 model.
-          </p>
-
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tag">Streamlit</span>
-            <span class="tag">Ollama</span>
-            <span class="tag">Llama 3</span>
-            <span class="tag">PyPDF2</span>
-            <span class="tag">Tesseract</span>
-            <span class="tag">OpenCV</span>
-            <span class="tag">NumPy</span>
-          </div>
-
-          <a href="https://github.com/A7med668" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full">
-            <i class="fa-brands fa-github"></i>
-            View Repository
-          </a>
-        </article>
-
-        <article class="card p-7 reveal">
-          <div class="flex items-start gap-4 mb-5">
-            <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-300 flex items-center justify-center text-2xl">
-              <i class="fa-solid fa-seedling"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-black leading-snug">
-                Eco-Guard: Plant Disease AI
-              </h3>
-              <p class="text-slate-400 text-sm mt-1">Computer Vision + Plant Health</p>
-            </div>
-          </div>
-
-          <p class="text-slate-300 leading-7 mb-5">
-            Designed a CNN-based computer vision pipeline to detect plant leaf diseases,
-            estimate infection severity, generate heatmaps, and recommend treatments.
-          </p>
-
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tag">TensorFlow</span>
-            <span class="tag">Keras</span>
-            <span class="tag">OpenCV</span>
-            <span class="tag">PIL</span>
-            <span class="tag">Plotly</span>
-            <span class="tag">Matplotlib</span>
-          </div>
-
-          <a href="https://github.com/A7med668" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full">
-            <i class="fa-brands fa-github"></i>
-            View Repository
-          </a>
-        </article>
-
-        <article class="card p-7 reveal">
-          <div class="flex items-start gap-4 mb-5">
-            <div class="w-14 h-14 rounded-2xl bg-yellow-500/15 text-yellow-300 flex items-center justify-center text-2xl">
-              <i class="fa-solid fa-user-secret"></i>
-            </div>
-            <div>
-              <h3 class="text-xl font-black leading-snug">
-                Threat Hunting Assistant
-              </h3>
-              <p class="text-slate-400 text-sm mt-1">RAG + Cybersecurity Analytics</p>
-            </div>
-          </div>
-
-          <p class="text-slate-300 leading-7 mb-5">
-            Developed an AI-based threat analysis assistant that processes logs,
-            maps suspicious behavior to MITRE ATT&CK, and generates investigation reports.
-          </p>
-
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tag">Python</span>
-            <span class="tag">Streamlit</span>
-            <span class="tag">Llama 3</span>
-            <span class="tag">RAG</span>
-            <span class="tag">ChromaDB</span>
-            <span class="tag">MITRE ATT&CK</span>
-          </div>
-
-          <a href="https://github.com/A7med668" target="_blank" rel="noopener noreferrer" class="btn-secondary w-full">
-            <i class="fa-brands fa-github"></i>
-            View Repository
-          </a>
-        </article>
-      </div>
-
-      <div class="card p-7 mt-6 reveal">
-        <h3 class="text-2xl font-black mb-3">
-          <i class="fa-solid fa-plus-circle text-cyan-300 mr-2"></i>
-          Additional Projects
-        </h3>
+    <div class="grid lg:grid-cols-2 gap-6">
+      <div class="card rounded-3xl p-8">
+        <h3 class="text-2xl font-black mb-4">Applied AI + Research</h3>
         <p class="text-slate-300 leading-8">
-          YouTube Video Summarizer using BART-large-CNN, PyTorch, and Streamlit;
-          Sentiment Classification using TensorFlow, scikit-learn, TextBlob, and WordCloud;
-          plus earlier projects in healthcare analytics, data visualization, Power BI,
-          forecasting, and classification.
+          My work spans retrieval-augmented generation, large language models, explainable and trustworthy AI,
+          computer vision, applied machine learning, data-centric AI, and AI for cybersecurity. I enjoy moving
+          from messy real-world data to validated pipelines, evaluation, interfaces, and decision-ready outputs.
         </p>
       </div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience" class="py-24">
-    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 reveal">
-        <h2 class="section-title gradient-text">Experience & Training</h2>
-        <p class="section-subtitle">
-          Professional training across data analysis, business intelligence, machine learning,
-          data science, LLM applications, and applied analytics workflows.
-        </p>
-      </div>
-
-      <div class="grid lg:grid-cols-2 gap-8">
-        <div class="card p-7 sm:p-8 reveal">
-          <h3 class="text-2xl font-black mb-8">
-            <i class="fa-solid fa-briefcase text-blue-300 mr-2"></i>
-            Training Programs
-          </h3>
-
-          <div class="space-y-8">
-            <div class="timeline-item">
-              <h4 class="text-lg font-black">NTI</h4>
-              <p class="text-cyan-300 font-bold">Data Analysis Skills for the Freelance Professional</p>
-              <p class="text-slate-400 mt-2">
-                Training focused on data analysis workflows and practical freelance-ready analytics skills.
-              </p>
-            </div>
-
-            <div class="timeline-item">
-              <h4 class="text-lg font-black">ITI</h4>
-              <p class="text-cyan-300 font-bold">Business Intelligence Development</p>
-              <p class="text-slate-400 mt-2">
-                Training in BI concepts, data modeling, reporting, and analytical dashboard development.
-              </p>
-            </div>
-
-            <div class="timeline-item">
-              <h4 class="text-lg font-black">Tips Hindawy</h4>
-              <p class="text-cyan-300 font-bold">LLM Internship</p>
-              <p class="text-slate-400 mt-2">
-                Applied learning around large language model applications and practical AI workflows.
-              </p>
-            </div>
-
-            <div class="timeline-item">
-              <h4 class="text-lg font-black">Cognorise Infotech</h4>
-              <p class="text-cyan-300 font-bold">Data Science Internship</p>
-              <p class="text-slate-400 mt-2">
-                Hands-on data science training and applied project development.
-              </p>
-            </div>
-
-            <div class="timeline-item">
-              <h4 class="text-lg font-black">Prodigy Infotech</h4>
-              <p class="text-cyan-300 font-bold">Machine Learning Internship</p>
-              <p class="text-slate-400 mt-2">
-                Practical machine learning training with model-building and analysis workflows.
-              </p>
-            </div>
-
-            <div class="timeline-item">
-              <h4 class="text-lg font-black">Eyooth</h4>
-              <p class="text-cyan-300 font-bold">Data Analytics Bootcamp</p>
-              <p class="text-slate-400 mt-2">
-                Data analytics bootcamp covering tools, analysis methods, and dashboarding concepts.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card p-7 sm:p-8 reveal">
-          <h3 class="text-2xl font-black mb-8">
-            <i class="fa-solid fa-star text-yellow-300 mr-2"></i>
-            Professional Strengths
-          </h3>
-
-          <div class="space-y-5">
-            <div class="glass-light rounded-2xl p-5">
-              <h4 class="font-black text-lg mb-2">
-                <i class="fa-solid fa-magnifying-glass-chart text-blue-300 mr-2"></i>
-                Analytical Thinking
-              </h4>
-              <p class="text-slate-400 leading-7">
-                Able to break complex data problems into clear steps, analyze patterns,
-                and build evidence-based solutions.
-              </p>
-            </div>
-
-            <div class="glass-light rounded-2xl p-5">
-              <h4 class="font-black text-lg mb-2">
-                <i class="fa-solid fa-screwdriver-wrench text-cyan-300 mr-2"></i>
-                Practical Implementation
-              </h4>
-              <p class="text-slate-400 leading-7">
-                Experienced in turning AI concepts into functional Streamlit apps,
-                dashboards, pipelines, and end-user tools.
-              </p>
-            </div>
-
-            <div class="glass-light rounded-2xl p-5">
-              <h4 class="font-black text-lg mb-2">
-                <i class="fa-solid fa-comments text-purple-300 mr-2"></i>
-                Communication
-              </h4>
-              <p class="text-slate-400 leading-7">
-                Skilled at explaining technical outputs through summaries, visualizations,
-                reports, and interactive interfaces.
-              </p>
-            </div>
-
-            <div class="glass-light rounded-2xl p-5">
-              <h4 class="font-black text-lg mb-2">
-                <i class="fa-solid fa-arrow-trend-up text-green-300 mr-2"></i>
-                Continuous Learning
-              </h4>
-              <p class="text-slate-400 leading-7">
-                Continuously building with modern AI tools including LangGraph, LangChain,
-                Hugging Face, Ollama, FAISS, Qdrant, and ChromaDB.
-              </p>
-            </div>
-          </div>
+      <div class="card rounded-3xl p-8">
+        <h3 class="text-2xl font-black mb-4">Education</h3>
+        <p class="text-cyan-300 font-bold">B.Sc. in Artificial Intelligence — Data Science Major</p>
+        <p class="text-slate-300 mt-3">Faculty of Artificial Intelligence, Menofia University · 2022–2026</p>
+        <div class="grid sm:grid-cols-2 gap-3 mt-6">
+          <div class="stat rounded-xl p-4"><span class="text-slate-400">GPA</span><strong class="block text-xl mt-1">3.67</strong></div>
+          <div class="stat rounded-xl p-4"><span class="text-slate-400">Overall</span><strong class="block text-xl mt-1">Excellent with Honors</strong></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-24">
-    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-      <div class="glass rounded-3xl p-7 sm:p-10 lg:p-12 reveal">
-        <div class="grid lg:grid-cols-2 gap-10 items-center">
+<section id="experience" class="py-24">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="section-title gradient-text">Research & Training</h2>
+      <p class="section-subtitle">Hands-on work combining data curation, quality control, AI engineering, and technical communication.</p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div class="card rounded-3xl p-8">
+        <div class="flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <p class="font-mono text-cyan-300 font-bold mb-4">
-              Let’s build something useful
-            </p>
-            <h2 class="section-title gradient-text mb-5">
-              Open to AI, Data Science, ML, BI, and analytics opportunities.
-            </h2>
-            <p class="text-slate-300 leading-8 text-lg">
-              I am interested in opportunities involving AI applications, data science,
-              machine learning, RAG, LLMs, NLP, computer vision, business intelligence,
-              financial analytics, and cybersecurity analytics.
-            </p>
+            <p class="mono text-cyan-300 text-sm font-bold">AI & DATA RESEARCH INTERN</p>
+            <h3 class="text-2xl font-black mt-2">Compumacy</h3>
           </div>
+          <span class="tag">2 Months</span>
+        </div>
+        <ul class="mt-6 space-y-3 text-slate-300 leading-7">
+          <li>• Contributed to <strong>ArabicPsychBench</strong>, an Arabic psychiatry benchmark for evaluating LLMs and supporting a research paper.</li>
+          <li>• Curated content from 16 Arabic psychiatry and clinical psychology books, including 535 Q&A items and 217 clinical case candidates.</li>
+          <li>• Built Python/OCR preprocessing and task-planning pipelines across QA, diagnosis, treatment, classification, follow-up, and sequential QA.</li>
+          <li>• Added source-fidelity checks, quality gates, leakage detection, review queues, and validation outputs.</li>
+        </ul>
+      </div>
 
-          <div class="space-y-4">
-            <a
-              href="mailto:ahmedhussein12215@gmail.com"
-              class="glass-light rounded-2xl p-5 flex items-center gap-4 hover:border-cyan-300/50 transition"
-            >
-              <div class="w-12 h-12 rounded-xl bg-blue-500/15 text-blue-300 flex items-center justify-center text-xl">
-                <i class="fa-solid fa-envelope"></i>
-              </div>
-              <div>
-                <p class="text-slate-400 text-sm">Email</p>
-                <p class="font-bold text-slate-100">ahmedhussein12215@gmail.com</p>
-              </div>
-            </a>
-
-            <a
-              href="tel:+201099846934"
-              class="glass-light rounded-2xl p-5 flex items-center gap-4 hover:border-cyan-300/50 transition"
-            >
-              <div class="w-12 h-12 rounded-xl bg-green-500/15 text-green-300 flex items-center justify-center text-xl">
-                <i class="fa-solid fa-phone"></i>
-              </div>
-              <div>
-                <p class="text-slate-400 text-sm">Phone</p>
-                <p class="font-bold text-slate-100">01099846934</p>
-              </div>
-            </a>
-
-            <a
-              href="https://github.com/A7med668"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="glass-light rounded-2xl p-5 flex items-center gap-4 hover:border-cyan-300/50 transition"
-            >
-              <div class="w-12 h-12 rounded-xl bg-purple-500/15 text-purple-300 flex items-center justify-center text-xl">
-                <i class="fa-brands fa-github"></i>
-              </div>
-              <div>
-                <p class="text-slate-400 text-sm">GitHub</p>
-                <p class="font-bold text-slate-100">github.com/A7med668</p>
-              </div>
-            </a>
-
-            <div class="glass-light rounded-2xl p-5 flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-red-500/15 text-red-300 flex items-center justify-center text-xl">
-                <i class="fa-solid fa-location-dot"></i>
-              </div>
-              <div>
-                <p class="text-slate-400 text-sm">Location</p>
-                <p class="font-bold text-slate-100">Menofia, Egypt</p>
-              </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-4 pt-3">
-              <a href="mailto:ahmedhussein12215@gmail.com" class="btn-primary flex-1">
-                <i class="fa-solid fa-paper-plane"></i>
-                Send Email
-              </a>
-              <a href="resume/Ahmed Hussein.pdf" download class="btn-secondary flex-1">
-                <i class="fa-solid fa-download"></i>
-                Download CV
-              </a>
-            </div>
-          </div>
+      <div class="card rounded-3xl p-8">
+        <h3 class="text-2xl font-black mb-6">Professional Training</h3>
+        <div class="timeline pl-5 space-y-6 text-slate-300">
+          <div class="timeline-item"><strong>ITI — Business Intelligence Development</strong></div>
+          <div class="timeline-item"><strong>NTI — Data Analysis Skills for the Freelance Professional</strong></div>
+          <div class="timeline-item"><strong>LLM Internship — Tips Hindawy</strong></div>
+          <div class="timeline-item"><strong>Data Science Internship — Cognorise Infotech</strong></div>
+          <div class="timeline-item"><strong>Machine Learning Internship — Prodigy Infotech</strong></div>
+          <div class="timeline-item"><strong>Eyooth Data Analytics Bootcamp</strong></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-800 py-10">
-    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
-      <h3 class="text-2xl font-black gradient-text mb-3">
-        Ahmed Hussein
-      </h3>
-      <p class="text-slate-400 mb-4">
-        AI & Data Science Undergraduate | RAG | LLMs | NLP | Computer Vision | OCR | Analytics
-      </p>
-      <p class="text-slate-500 text-sm">
-        © 2026 Ahmed Hussein Ali Abdelsalam Hussein. All rights reserved.
-      </p>
+<section id="projects" class="py-24">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="section-title gradient-text">Featured Projects</h2>
+      <p class="section-subtitle">Selected projects across AI engineering, security, forensics, document intelligence, forecasting, and analytics.</p>
     </div>
-  </footer>
 
-  <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
-    const mobileLinks = document.querySelectorAll(".mobile-link");
+    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <article class="card rounded-3xl p-7">
+        <span class="tag">Graduation Project</span>
+        <h3 class="text-2xl font-black mt-5">AEGIS — Android Security Platform</h3>
+        <p class="text-slate-400 mt-3 leading-7">APK intake, static/dynamic analysis, emulator testing, evidence lineage, local AI assessment, risk scoring, MITRE ATT&CK mapping, and PDF-ready reporting.</p>
+        <p class="mono text-xs text-cyan-300 mt-5">Python · FastAPI · React · Docker · Ollama · RAG · MITRE ATT&CK</p>
+      </article>
 
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
+      <article class="card rounded-3xl p-7">
+        <span class="tag">Digital Forensics</span>
+        <h3 class="text-2xl font-black mt-5">DeepTrace AI</h3>
+        <p class="text-slate-400 mt-3 leading-7">Local-first forensic workstation for image/PDF evidence with Arabic-English OCR, metadata, ELA, SHA-256 integrity checks, duplicate detection, explainable risk signals, and local LLM summaries.</p>
+        <p class="mono text-xs text-cyan-300 mt-5">FastAPI · Streamlit · OpenCV · Tesseract · PyMuPDF · SQLAlchemy · Ollama</p>
+      </article>
 
-      const icon = menuBtn.querySelector("i");
-      icon.classList.toggle("fa-bars");
-      icon.classList.toggle("fa-xmark");
-    });
+      <article class="card rounded-3xl p-7">
+        <span class="tag">Multi-Agent AI</span>
+        <h3 class="text-2xl font-black mt-5">Mobile Security Assistant</h3>
+        <p class="text-slate-400 mt-3 leading-7">Guarded LangGraph multi-agent architecture with routing, memory, Qdrant retrieval, MASVS knowledge, optional web search, bilingual responses, and prompt-injection safeguards.</p>
+        <p class="mono text-xs text-cyan-300 mt-5">LangGraph · RAG · FAISS · Qdrant · Ollama · LangSmith</p>
+      </article>
 
-    mobileLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.add("hidden");
+      <article class="card rounded-3xl p-7">
+        <span class="tag">RAG</span>
+        <h3 class="text-2xl font-black mt-5">Document Q&A System</h3>
+        <p class="text-slate-400 mt-3 leading-7">Interactive PDF extraction, chunking, embeddings, semantic retrieval, and context-grounded answer generation.</p>
+        <p class="mono text-xs text-cyan-300 mt-5">Streamlit · FAISS · LangChain · Sentence-Transformers · Gemini API</p>
+      </article>
 
-        const icon = menuBtn.querySelector("i");
-        icon.classList.add("fa-bars");
-        icon.classList.remove("fa-xmark");
-      });
-    });
+      <article class="card rounded-3xl p-7">
+        <span class="tag">Computer Vision</span>
+        <h3 class="text-2xl font-black mt-5">Eco-Guard</h3>
+        <p class="text-slate-400 mt-3 leading-7">CNN-based plant disease detection and severity estimation with heatmaps, analytics, treatment recommendations, and report export.</p>
+        <p class="mono text-xs text-cyan-300 mt-5">TensorFlow · Keras · OpenCV · Plotly</p>
+      </article>
 
-    const revealElements = document.querySelectorAll(".reveal");
+      <article class="card rounded-3xl p-7">
+        <span class="tag">Medical AI</span>
+        <h3 class="text-2xl font-black mt-5">OllamaMed</h3>
+        <p class="text-slate-400 mt-3 leading-7">Privacy-focused offline pipeline for extracting text from medical PDFs/images, summarizing reports locally, highlighting findings, and explaining terminology.</p>
+        <p class="mono text-xs text-cyan-300 mt-5">Streamlit · Ollama · Llama 3 · Tesseract · OpenCV</p>
+      </article>
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -40px 0px"
-      }
-    );
+      <article class="card rounded-3xl p-7">
+        <span class="tag">Financial Analytics</span>
+        <h3 class="text-2xl font-black mt-5">AI Financial Advisory Platform</h3>
+        <p class="text-slate-400 mt-3 leading-7">Bilingual financial analytics platform with health scoring, savings/debt recommendations, sensitivity analysis, interactive charts, and history tracking.</p>
+        <p class="mono text-xs text-cyan-300 mt-5">Streamlit · LangChain · SQLite · Pandas</p>
+      </article>
 
-    revealElements.forEach((element) => {
-      revealObserver.observe(element);
-    });
+      <article class="card rounded-3xl p-7">
+        <span class="tag">Forecasting</span>
+        <h3 class="text-2xl font-black mt-5">Home Energy Tracker</h3>
+        <p class="text-slate-400 mt-3 leading-7">ETL/EDA and interactive energy dashboards with weather-aware SARIMAX forecasting for short-horizon consumption predictions.</p>
+        <p class="mono text-xs text-cyan-300 mt-5">Pandas · Statsmodels · SARIMAX · Streamlit</p>
+      </article>
 
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (event) {
-        const target = document.querySelector(this.getAttribute("href"));
+      <article class="card rounded-3xl p-7">
+        <span class="tag">BI & Dashboards</span>
+        <h3 class="text-2xl font-black mt-5">Analytics Portfolio</h3>
+        <p class="text-slate-400 mt-3 leading-7">Interactive Plotly dashboards plus Power BI, Tableau, Excel, SQL, AdventureWorks, Adidas sales, and business analytics work.</p>
+        <p class="mono text-xs text-cyan-300 mt-5">Plotly · Dash · Power BI · Tableau · Excel · SQL</p>
+      </article>
+    </div>
 
-        if (target) {
-          event.preventDefault();
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
-      });
-    });
-  </script>
+    <div class="glass rounded-3xl p-7 mt-6">
+      <h3 class="text-xl font-black">More selected work</h3>
+      <p class="text-slate-400 mt-3 leading-7">Amazon Reviews Sentiment Analysis · Diabetes Analysis · Threat Hunting Assistant (RAG + MITRE ATT&CK) · YouTube Video Summarizer.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="py-24">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="section-title gradient-text">Technical Skills</h2>
+      <p class="section-subtitle">Tools I use to move from data and research to working AI products and analytics systems.</p>
+    </div>
+    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div class="card rounded-3xl p-7"><h3 class="font-black text-xl mb-4">AI / ML</h3><p class="text-slate-400 leading-8">Machine Learning · Deep Learning · NLP · Computer Vision · RAG · LLMs · OCR · Sentiment Analysis · Model Evaluation · Time-Series Forecasting</p></div>
+      <div class="card rounded-3xl p-7"><h3 class="font-black text-xl mb-4">Frameworks</h3><p class="text-slate-400 leading-8">TensorFlow · Keras · PyTorch · scikit-learn · FastAPI · LangChain · Hugging Face · FAISS · OpenCV · Streamlit</p></div>
+      <div class="card rounded-3xl p-7"><h3 class="font-black text-xl mb-4">Data & BI</h3><p class="text-slate-400 leading-8">Python · SQL · Pandas · NumPy · Matplotlib · Plotly · Excel · Power BI · Tableau · Power Query · DAX · SQL Server</p></div>
+      <div class="card rounded-3xl p-7"><h3 class="font-black text-xl mb-4">AI / Security Tools</h3><p class="text-slate-400 leading-8">Ollama · Gemini API · Tesseract OCR · PyMuPDF · Qdrant · ChromaDB · SQLite · SQLAlchemy · Git/GitHub · Docker · MITRE ATT&CK · MASVS · Androguard</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="py-24 pb-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="glass rounded-3xl p-8 sm:p-12">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="mono text-cyan-300 font-bold mb-4">LET’S BUILD SOMETHING USEFUL</p>
+          <h2 class="section-title gradient-text">Open to AI, Data Science, Research, ML, BI, and Analytics opportunities.</h2>
+          <p class="text-slate-300 leading-8 text-lg mt-5">Interested in reliable data-driven products, applied research, and collaborative technical work.</p>
+        </div>
+        <div class="space-y-4">
+          <a href="mailto:ahmedhussein12215@gmail.com" class="card rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/15 text-blue-300 grid place-items-center text-xl"><i class="fa-solid fa-envelope"></i></div>
+            <div><p class="text-slate-400 text-sm">Email</p><p class="font-bold break-all">ahmedhussein12215@gmail.com</p></div>
+          </a>
+          <a href="tel:+201099846934" class="card rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-300 grid place-items-center text-xl"><i class="fa-solid fa-phone"></i></div>
+            <div><p class="text-slate-400 text-sm">Phone</p><p class="font-bold">01099846934</p></div>
+          </a>
+          <a href="https://github.com/A7med668" target="_blank" rel="noopener noreferrer" class="card rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/15 text-purple-300 grid place-items-center text-xl"><i class="fa-brands fa-github"></i></div>
+            <div><p class="text-slate-400 text-sm">GitHub</p><p class="font-bold">github.com/A7med668</p></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-slate-800/80 py-8 text-center text-slate-500 text-sm">
+  <p>© 2026 Ahmed Hussein · Built for GitHub Pages.</p>
+</footer>
+
 </body>
 </html>
